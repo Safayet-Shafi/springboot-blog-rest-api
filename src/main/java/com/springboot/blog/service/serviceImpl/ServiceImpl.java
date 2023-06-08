@@ -53,6 +53,20 @@ public class ServiceImpl implements PostService {
         return postDTO;
     }
 
+    @Override
+    public PostDTO updateTypeConversion(PostDTO postDTO, long uniqueId) {
+        Post post = postRepo.findById(uniqueId).orElseThrow(() -> new ResourceNotFoundException("Post", "uniqueId", uniqueId));
+        post.setTitle(postDTO.getTitle());
+        post.setDescription(postDTO.getDescription());
+        post.setContent(postDTO.getContent());
+
+        Post Post1 = postRepo.save(post); // after saving db returns entity have to convert this entity into dto
+        return maptoDTO(Post1);
+
+        
+    }
+
+
     private PostDTO maptoDTO(Post post) {
         PostDTO postDTO = mapper.map(post, PostDTO.class);
         return postDTO;

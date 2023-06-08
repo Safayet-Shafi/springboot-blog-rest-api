@@ -14,4 +14,6 @@ public interface PostService {
     PostDTO postGetByUniqueId(long uniqueId);
 
     PostDTO postGetByTitle(String title);
+
+    PostDTO updateTypeConversion(PostDTO postDTO ,long uniqueId);
 }

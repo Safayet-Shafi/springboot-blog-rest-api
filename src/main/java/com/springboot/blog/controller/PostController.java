@@ -44,4 +44,11 @@ public class PostController {
         return postService.postGetByTitle(title);
     }
 
+    @PatchMapping("/{uniqueId}")
+    public PostDTO updatePost(@PathVariable (name = "uniqueId") long uniqueId,
+                                                       @RequestBody PostDTO postDTO){
+        PostDTO postDTO1=postService.updateTypeConversion(postDTO,uniqueId);
+        return postDTO1;
+    }
+
 }

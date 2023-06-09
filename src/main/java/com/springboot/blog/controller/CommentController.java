@@ -4,10 +4,7 @@ import com.springboot.blog.dto.CommentDTO;
 import com.springboot.blog.dto.PostDTO;
 import com.springboot.blog.service.CommentService;
 import com.springboot.blog.service.PostService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,9 +18,15 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @GetMapping("/posts/{postId}/comments")
+    @GetMapping("/posts/comments/{postId}")
    public List<CommentDTO> getCommentByPostId(@PathVariable(value = "postId") Long postId){
      return commentService.getCommentsByPostId(postId);
+    }
+
+    @PostMapping("/posts/comments/{postId}")
+    public CommentDTO createComment(@PathVariable(value = "postId") long postId,
+                                    @RequestBody CommentDTO commentDTO){
+        return commentService.createComment(postId,commentDTO);
     }
 
 }

@@ -1,14 +1,13 @@
 package com.springboot.blog.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 
@@ -35,4 +34,15 @@ public class Post {
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL,orphanRemoval = true)
     private Set<Comment> comments = new HashSet<>();
+
+    public Set<Comment> getcomments() {
+        return comments;
+    }
+
+    public void setComment(Set<Comment> comments) {
+        this.comments = comments;
+        for (Comment a : comments) {
+            a.setPost(this);
+        }
+    }
 }

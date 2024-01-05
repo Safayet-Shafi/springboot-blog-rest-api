@@ -1,6 +1,7 @@
 package com.springboot.blog.controller;
 
 import com.springboot.blog.dto.PostDTO;
+import com.springboot.blog.dto.ResponseModelDTO;
 import com.springboot.blog.service.PostService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,8 @@ public class PostController {
     }
 
     @PostMapping()
-    public PostDTO postInsert(@RequestBody PostDTO postDTO) {
+    public ResponseModelDTO postInsert(@RequestBody PostDTO postDTO) {
+        System.out.println("postDTO = " + postDTO);
         return postService.createPost(postDTO);
     }
 

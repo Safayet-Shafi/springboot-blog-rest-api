@@ -3,11 +3,14 @@ package com.springboot.blog.dto;
 import com.springboot.blog.model.Post;
 import jakarta.persistence.Column;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class CommentDTO {
 
-    private long id;
+    private long comment_id;
     private String name;
     private String email;
     private String body;

@@ -1,6 +1,7 @@
 package com.springboot.blog.service.serviceImpl;
 
 import com.springboot.blog.dto.PostDTO;
+import com.springboot.blog.dto.ResponseModelDTO;
 import com.springboot.blog.exception.ResourceNotFoundException;
 import com.springboot.blog.model.Post;
 import com.springboot.blog.repository.PostRepo;
@@ -25,10 +26,19 @@ public class ServiceImpl implements PostService {
        }
 
     @Override
-    public PostDTO createPost(PostDTO postDTO) {
-        Post post = maptoEntity(postDTO); //given dto in converted in entity for saving
-        Post Post1 = postRepo.save(post); // after saving db returns entity have to convert this entity into dto
-        return maptoDTO(Post1); //returned entity converted into dto
+    public ResponseModelDTO createPost(PostDTO postDTO) {
+        ResponseModelDTO responseModelDTO = new ResponseModelDTO();
+        Post post = maptoEntity(postDTO);
+        try{
+            Post Post1 = postRepo.save(post);
+            responseModelDTO.setResponseCode(1);
+            responseModelDTO.setResponseMessage("SuccessFull");
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return responseModelDTO;
+
     }
 
     @Override

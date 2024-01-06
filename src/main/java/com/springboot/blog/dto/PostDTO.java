@@ -15,6 +15,6 @@ public class PostDTO {
     private String title;
     private String description;
     private String content;
-    private Set<Comment> comments ;
+    private Set<Comment> comment ;
 
 }

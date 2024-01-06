@@ -33,15 +33,15 @@ public class Post {
     private String content;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<Comment> comments = new HashSet<>();
+    private Set<Comment> comment = new HashSet<>();
 
     public Set<Comment> getcomments() {
-        return comments;
+        return comment;
     }
 
-    public void setComment(Set<Comment> comments) {
-        this.comments = comments;
-        for (Comment a : comments) {
+    public void setComment(Set<Comment> comment) {
+        this.comment = comment;
+        for (Comment a : comment) {
             a.setPost(this);
         }
     }

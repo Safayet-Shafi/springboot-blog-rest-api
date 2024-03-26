@@ -66,6 +66,7 @@ public class ServiceImpl implements PostService {
     @Override
     public PostDTO updateTypeConversion(PostDTO postDTO, long uniqueId) {
         Post post = postRepo.findById(uniqueId).orElseThrow(() -> new ResourceNotFoundException("Post", "uniqueId", uniqueId));
+        System.out.println(post);
         post.setTitle(postDTO.getTitle());
         post.setDescription(postDTO.getDescription());
         post.setContent(postDTO.getContent());

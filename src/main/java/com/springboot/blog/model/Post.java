@@ -19,7 +19,7 @@ public class Post {
 
     @Id
     @GeneratedValue(
-            strategy = GenerationType.SEQUENCE
+            strategy = GenerationType.AUTO
     )
     private long id;
 
